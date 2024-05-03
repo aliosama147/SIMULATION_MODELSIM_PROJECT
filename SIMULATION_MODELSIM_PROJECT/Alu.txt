@@ -1,0 +1,33 @@
+se ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+-------------------------------------------------
+entity Alu is
+port(   op: in std_logic_vector(1 downto 0);
+	rs: in std_logic_vector(7 downto 0);
+	rt: in std_logic_vector(7 downto 0);
+        rd: out std_logic_vector(7 downto 0));
+end Alu;
+-------------------------------------------------
+
+architecture alu_behav of Alu is
+signal result : std_logic_vector(7 downto 0 );
+begin
+process(op,rs,rt)
+begin
+
+if(op = "00") then --and
+result <= rs and rt;   
+
+elsif(op = "01") then --add
+result <= rs + rt;
+
+elsif(op = "10") then --sub
+result <= rs - rt;      
+
+elsif(op = "11") then --or
+result <= rs or rt;   
+
+end if;
+end process;
+rd<= result;
+end alu_behav;

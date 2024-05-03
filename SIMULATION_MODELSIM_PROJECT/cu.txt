@@ -1,0 +1,20 @@
+library ieee;
+use ieee.std_logic_1164.all;
+---------------------------------------
+entity control is
+port(
+       instr:in std_logic_vector (1 downto 0);
+       alu_op:out std_logic_vector (1 downto 0)
+);
+end control;
+-------------------------------------------
+
+architecture control_behav of control is 
+begin
+with instr select
+alu_op <= "00" when "00" , --and
+"10" when "10", --add
+"01" when "01", --sub
+"11" when others; --or
+          
+end control_behav;
